@@ -63,7 +63,7 @@ Artist = ?json_to_record(artist, Json).
 
 the resulting json will be:
 
-<pre lang="javascript" line="1">
+
 {
      name: "Luc Besson",
      year_of_birth: 1959,
