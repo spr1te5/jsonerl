@@ -7,7 +7,6 @@ SRC   := $(wildcard src/*.erl)
 BEAMS := $(SRC:src/%.erl=ebin/%.beam) 
 
 compile: $(BEAMS)
-	@cp src/*.app ebin/
 
 clean:
 	rm -f ebin/*.{app,beam}
