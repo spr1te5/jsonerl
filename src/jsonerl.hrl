@@ -53,18 +53,18 @@
 ).
 
 -define(list_records_to_json(RecordName, List),
-		    L = length(List),
-				Zipped = lists:zip(lists:seq(1,L),List),
-				Quotes = lists:map(
-						fun({N,X}) ->
-										case L == N of
+		    L___ = length(List),
+				Zipped___ = lists:zip(lists:seq(1,L___),List),
+				Quotes___ = lists:map(
+						fun({N___,X___}) ->
+										case L___ == N___ of
 												false ->
-														Json = jsonerl:encode(?record_to_struct(RecordName,X)),
-														Json ++ ",";
-												true -> jsonerl:encode(?record_to_struct(RecordName,X))
+														Json___ = jsonerl:encode(?record_to_struct(RecordName,X___)),
+														Json___ ++ ",";
+												true -> jsonerl:encode(?record_to_struct(RecordName,X___))
 										end
-						end, Zipped),
-				lists:flatten(io_lib:format("~s",["["++Quotes++"]"]))).
+						end, Zipped___),
+				lists:flatten(io_lib:format("~s",["["++Quotes___++"]"]))).
 
 -define(json_to_record(RecordName, Json),
   % decode json text to erlang struct
