@@ -73,7 +73,25 @@ the resulting json will be:
 }
 
 
+-record(man,{name,age}).
 
+Man1 = #man{name = "Petr", age = 45},
+Man2 = #man{name = "Elton", age = 27 },
+ListOfMans = [Man1,Man2],
 
+ListJson = ?list_record_to_json(man,ListOfMans)
+
+the resulting json will be:
+
+[
+  { 
+    name:"Petr",
+    age:45
+  },
+  {
+    name:"Elton",
+    age:27
+  }
+]
 
   
