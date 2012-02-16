@@ -2,6 +2,7 @@
 
 -export([encoder/1, encode/1]).
 -export([decoder/1, decode/1]).
+-export([obj_from_list/1]).
 -export([test/0]).
 -export([to_ex_a/1]).
 
@@ -123,7 +124,7 @@ json_encode_proplist(Tuples, State) when is_tuple(Tuples) ->
                 [$,, VS, $:, KS | Acc]
         end,
     [$, | Acc1] = lists:foldl(F, "{", tuple_to_list(Tuples)),
-    lists:reverse([$\} | Acc1]).
+    list_to_binary(lists:reverse([$\} | Acc1])).
 
 json_encode_string(A, _State) when is_atom(A) ->
     L = atom_to_list(A),
@@ -158,6 +159,8 @@ json_string_is_safe([C | Rest]) ->
             false;
         $\\ ->
             false;
+        $\' ->
+            false;
         $\b ->
             false;
         $\f ->
@@ -183,6 +186,8 @@ json_bin_is_safe(<<C, Rest/binary>>) ->
         ?Q ->
             false;
         $\\ ->
+            false;
+        $\' ->
             false;
         $\b ->
             false;
@@ -220,6 +225,8 @@ json_encode_string_unicode([C | Cs], Acc) ->
                %%
                $\\ ->
                    [$\\, $\\ | Acc];
+               $\' ->
+                   [$\', $\\ | Acc];
                $\b ->
                    [$b, $\\ | Acc];
                $\f ->

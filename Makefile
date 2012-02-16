@@ -9,7 +9,7 @@ BEAMS := $(SRC:src/%.erl=ebin/%.beam)
 compile: $(BEAMS)
 
 clean:
-	rm -f ebin/*.{app,beam}
+	rm -f ebin/*.{beam}
 
 .SUFFIXES: .erl .beam
 .PHONY:    clean
