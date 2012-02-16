@@ -159,8 +159,6 @@ json_string_is_safe([C | Rest]) ->
             false;
         $\\ ->
             false;
-        $\' ->
-            false;
         $\b ->
             false;
         $\f ->
@@ -186,8 +184,6 @@ json_bin_is_safe(<<C, Rest/binary>>) ->
         ?Q ->
             false;
         $\\ ->
-            false;
-        $\' ->
             false;
         $\b ->
             false;
@@ -225,8 +221,6 @@ json_encode_string_unicode([C | Cs], Acc) ->
                %%
                $\\ ->
                    [$\\, $\\ | Acc];
-               $\' ->
-                   [$\', $\\ | Acc];
                $\b ->
                    [$b, $\\ | Acc];
                $\f ->
